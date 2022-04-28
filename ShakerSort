@@ -1,0 +1,47 @@
+class Program
+{
+    static void Swap(ref int e1, ref int e2)
+    {
+        var temp = e1; //just swap
+        e1 = e2;
+        e2 = temp;
+    }
+
+    static int[] ShakerSort(int[] array)  //sorting method
+    {
+        for (var i = 0; i < array.Length / 2; i++)
+        {
+            for (var j = i; j < array.Length - i - 1; j++)
+            {
+                if (array[j] > array[j + 1])
+                {
+                    Swap(ref array[j], ref array[j + 1]);
+                }
+            }
+            for (var j = array.Length - 2 - i; j > i; j--)
+            {
+                if (array[j - 1] > array[j])
+                {
+                    Swap(ref array[j - 1], ref array[j]);
+                }
+            }
+
+        }
+
+        return array;
+    }
+
+    static void Main(string[] args)
+    {
+        int[] a = new int[10];  // creating random array
+        Random r = new Random();
+
+        for (int i = 0; i < a.Length; i++)
+        {
+            a[i] = r.Next(1,10);  // setting the min and max value of our array
+        }
+        Console.WriteLine("Shaker sort array: {0}", string.Join(", ", ShakerSort(a))); // display created array
+
+        Console.ReadLine();
+    }
+}
